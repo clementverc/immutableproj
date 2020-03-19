@@ -84,7 +84,16 @@ class Contacts extends Component {
             <ArrowDropDownIcon />
           </IconButton>
           <Tooltip title="Ajouter contact toto">
-            <IconButton onClick={() => dispatch(addContact({ id: 89, firstName: 'toto', phone: '0123456789' }))}>
+            <IconButton onClick={() => dispatch(addContact(
+              {
+                id: 99,
+                firstName: 'toto',
+                lastName: 'touto',
+                phone: '0123456789',
+                city: 'chezLui',
+              },
+            ))}
+            >
               <PersonAddIcon />
             </IconButton>
           </Tooltip>
