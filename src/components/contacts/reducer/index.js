@@ -1,16 +1,16 @@
-// import { fromJS } from 'immutable';
+import { fromJS } from 'immutable';
 
 import actionsTypes from '../action/actions-types';
 import initialState from './initial-state';
 
-const addContact = (state, action) => ({
-  items: state.items.concat(action.contact),
-});
-// const addContact = (state, action) => (
-//   fromJS(state)
-//     .setIn(['item'], action.contact)
-//     .toJS()
-// );
+// const addContact = (state, action) => ({
+//   items: state.items.concat(action.contact),
+// });
+const addContact = (state, action) => (
+  fromJS(state)
+    .setIn(['item'], action.contact)
+    .toJS()
+);
 
 const deleteContact = (state, action) => ({
   items: state.items.filter((user) => user.id !== action.id),
