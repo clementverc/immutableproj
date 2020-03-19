@@ -48,52 +48,10 @@ export default {
     phone: '0612345678',
     city: 'marseille',
   }, {
-    id: 9,
-    firstName: 'Jacques',
-    lastName: 'JacquesLast',
-    phone: '0612345678',
-    city: 'londres',
-  }, {
-    id: 10,
-    firstName: 'Pierre',
-    lastName: 'PierreLast',
-    phone: '0612345678',
-    city: 'londres',
-  }, {
-    id: 11,
-    firstName: 'Jean',
-    lastName: 'JeanLast',
-    phone: '0612345678',
-    city: 'londres',
-  }, {
     id: 12,
     firstName: 'Cyril',
     lastName: 'Vimard',
     phone: '0612345678',
     city: 'londres',
-  }, {
-    id: 13,
-    firstName: 'Jacques',
-    lastName: 'JacquesLast',
-    phone: '0612345678',
-    city: 'new-york',
-  }, {
-    id: 14,
-    firstName: 'Pierre',
-    lastName: 'PierreLast',
-    phone: '0612345678',
-    city: 'new-york',
-  }, {
-    id: 15,
-    firstName: 'Jean',
-    lastName: 'JeanLast',
-    phone: '0612345678',
-    city: 'new-york',
-  }, {
-    id: 16,
-    firstName: 'Cyril',
-    lastName: 'Vimard',
-    phone: '0612345678',
-    city: 'new-york',
   }],
 };

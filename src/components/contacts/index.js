@@ -1,33 +1,42 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import SettingsIcon from '@material-ui/icons/Settings';
-import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
-import WorkIcon from '@material-ui/icons/Work';
-import { connect } from 'react-redux';
-import { addContact } from './action';
+import FaceIcon from '@material-ui/icons/Face';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import SettingsIcon from '@material-ui/icons/Settings';
+import SendIcon from '@material-ui/icons/Send';
+import TextField from '@material-ui/core/TextField';
 
-const Contact = ({ id, firstName, phone }) => (
-  <div>
-    <ListItem>
-      <ListItemAvatar>
-        <Avatar>
-          <WorkIcon />
-        </Avatar>
-      </ListItemAvatar>
-      <ListItemText primary={`${firstName} ${id}`} secondary={`${phone}`} />
-      <IconButton color="secondary">
-        <DeleteIcon />
-      </IconButton>
-    </ListItem>
-  </div>
-);
+import { addContact, deleteContact } from './action';
+
+// handleSubmit = () => {
+//   alert(this.state.value);
+// };
+
+const Contact = ({ dispatch, user }) => {
+  const { firstName, phone, id } = user;
+  return (
+    <div>
+      <ListItem>
+        <ListItemAvatar>
+          <Avatar>
+            <FaceIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary={`${firstName} ${id}`} secondary={`${phone}`} />
+        <IconButton color="secondary" onClick={() => dispatch(deleteContact(id))}>
+          <DeleteIcon />
+        </IconButton>
+      </ListItem>
+    </div>
+  );
+};
 
 const Contacts = ({ dispatch, items }) => (
   <div>
@@ -43,18 +52,42 @@ const Contacts = ({ dispatch, items }) => (
         <SettingsIcon />
       </IconButton>
     </h1>
-    <List>
-      {items.map((item) => (
-        <div key={item.id}>
-          <Contact id={item.id} firstName={item.firstName} phone={item.phone} />
-        </div>
+    <form>
+      <TextField
+        id="outlined-number"
+        label="Id"
+        type="number"
+        InputLabelProps={{
+          shrink: true,
+        }}
+        variant="outlined"
+      />
+      <TextField id="outlined-basic" label="FirstName" variant="outlined" />
+      <TextField id="outlined-basic" label="LastName" variant="outlined" />
+      <TextField id="outlined-basic" label="City" variant="outlined" />
+      <TextField
+        id="outlined-number"
+        label="Phone"
+        type="number"
+        InputLabelProps={{
+          shrink: true,
+        }}
+        variant="outlined"
+      />
+      <IconButton type="submit" value="Enregistrer">
+        <SendIcon />
+      </IconButton>
+    </form>
+    <ul>
+      {items.map((user) => (
+        <Contact key={user.id} dispatch={dispatch} user={user} />
       ))}
-    </List>
+    </ul>
   </div>
 );
+
 const mapToProps = (state) => {
   const { items } = state.contacts;
-
   return ({ items });
 };
 

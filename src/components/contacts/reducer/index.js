@@ -11,8 +11,9 @@ const addContact = (state, action) => ({
 //     .setIn(['item'], action.contact)
 //     .toJS()
 // );
+
 const deleteContact = (state, action) => ({
-  items: state.items.splice(action.contact),
+  items: state.items.filter((user) => user.id !== action.id),
 });
 
 export default (state = initialState, action) => {

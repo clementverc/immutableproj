@@ -15,3 +15,11 @@ export const deleteContact = (id) => ({
   type: actionsTypes.DELETE_CONTACT,
   id,
 });
+
+/**
+* Update contact
+*/
+export const updateContact = (id) => ({
+  type: actionsTypes.UPDATE_CONTACT,
+  id,
+});
