@@ -6,22 +6,22 @@ import initialState from './initial-state';
 // const addContact = (state, action) => ({
 //   items: state.items.concat(action.contact),
 // });
-const addContact = (state, action) => (
+const actionContact = (state, action) => (
   fromJS(state)
-    .setIn(['item'], action.contact)
+    .setIn(['items'], action.contacts)
     .toJS()
 );
 
-const deleteContact = (state, action) => ({
-  items: state.items.filter((user) => user.id !== action.id),
-});
+// const deleteContact = (state, action) => ({
+//   items: state.items.filter((user) => user.id !== action.id),
+// });
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case actionsTypes.ADD_CONTACT:
-      return addContact(state, action);
-    case actionsTypes.DELETE_CONTACT:
-      return deleteContact(state, action);
+    case actionsTypes.ACTION_CONTACT:
+      return actionContact(state, action);
+    // case actionsTypes.DELETE_CONTACT:
+    //   return deleteContact(state, action);
     default:
       return state;
   }

@@ -17,7 +17,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import { addContact, deleteContact } from './action';
 
-const Contact = ({ dispatch, user }) => {
+const Contact = ({ user }) => {
   const {
     firstName,
     lastName,
@@ -35,7 +35,7 @@ const Contact = ({ dispatch, user }) => {
           </Avatar>
         </ListItemAvatar>
         <ListItemText primary={`${firstName} ${lastName} ${id}`} secondary={`${phone} - ${city}`} />
-        <IconButton color="secondary" onClick={() => dispatch(deleteContact(id))}>
+        <IconButton color="secondary" onClick={() => deleteContact(id)}>
           <DeleteIcon />
         </IconButton>
       </ListItem>
@@ -59,21 +59,22 @@ class Contacts extends Component {
   }
 
   handleSubmit(event) {
-    const { dispatch } = this.props;
+    // const { dispatch } = this.props;
+    console.log(this);
     event.preventDefault();
-    dispatch(addContact({
+    addContact({
       form: { },
       firstName: event.target.firstName.value,
       lastName: event.target.lastName.value,
       city: event.target.city.value,
       phone: event.target.phone.value,
       id: event.target.id.value,
-    }));
+    });
     // console.log(event.target.firstName.value);
   }
 
   render() {
-    const { dispatch, items } = this.props;
+    const { items } = this.props;
     const { form } = this.state;
 
     return (
@@ -84,7 +85,7 @@ class Contacts extends Component {
             <ArrowDropDownIcon />
           </IconButton>
           <Tooltip title="Ajouter contact toto">
-            <IconButton onClick={() => dispatch(addContact(
+            <IconButton onClick={() => addContact(
               {
                 id: 99,
                 firstName: 'toto',
@@ -92,7 +93,7 @@ class Contacts extends Component {
                 phone: '0123456789',
                 city: 'chezLui',
               },
-            ))}
+            )}
             >
               <PersonAddIcon />
             </IconButton>
@@ -116,7 +117,7 @@ class Contacts extends Component {
         </form>
         <ul>
           {items.map((user) => (
-            <Contact key={user.id} dispatch={dispatch} user={user} />
+            <Contact key={user.id} user={user} />
           ))}
         </ul>
       </div>
