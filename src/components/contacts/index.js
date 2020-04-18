@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import Grid from '@material-ui/core/Grid';
-
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import FaceIcon from '@material-ui/icons/Face';
-import SendIcon from '@material-ui/icons/Send';
-import TextField from '@material-ui/core/TextField';
-import Tooltip from '@material-ui/core/Tooltip';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
+import {
+  Grid,
+  IconButton,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  Avatar,
+  TextField,
+  Tooltip,
+  Select,
+  InputLabel,
+} from '@material-ui/core';
+import { Delete, Face, Send } from '@material-ui/icons';
 import { addContact, deleteContact, updateContact } from './action';
 
 const Contact = ({ user }) => {
@@ -34,12 +31,12 @@ const Contact = ({ user }) => {
           <ListItem>
             <ListItemAvatar>
               <Avatar>
-                <FaceIcon />
+                <Face />
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary={`${firstName} ${lastName}`} secondary={`${phone} - ${city}`} />
             <IconButton color="secondary" onClick={() => deleteContact(id)}>
-              <DeleteIcon />
+              <Delete />
             </IconButton>
           </ListItem>
         </Grid>
@@ -111,8 +108,8 @@ class Contacts extends Component {
     items.sort((a, b) => (a.firstName.toLowerCase() < b.firstName.toLowerCase() ? -1 : 1));
     return (
       <div>
-        <h1>
-          Mes Contacts
+        <h1 style={{ textAlign: 'center' }}>
+          Ma liste de contacts
         </h1>
         <h3>Ajouter un contact :</h3>
         <form onSubmit={this.handleSubmit}>
@@ -123,47 +120,48 @@ class Contacts extends Component {
           <TextField id="phone" label="phone" type="number" InputLabelProps={{ shrink: true }} variant="outlined" />
           <Tooltip title="Ajouter le contact">
             <IconButton type="submit" value="Enregistrer">
-              <SendIcon />
+              <Send />
             </IconButton>
           </Tooltip>
         </form>
+        <hr style={{ marginTop: '25px', marginBottom: '25px' }} />
         <h3>Modifier un contact :</h3>
         <form onSubmit={this.handleUpdate}>
-          <FormControl>
-            <div>
-              <InputLabel htmlFor="idSelectedUser">Sélectionner un utilisateur</InputLabel>
-              <Select
-                native
-                value={idSelectedUser}
-                onChange={this.handleChange}
-                inputProps={{
-                  name: 'idSelectedUser',
-                  id: 'idSelectedUser',
-                }}
-              >
-                <option aria-label="None" value="" />
-                <option value="1">Jacques Last</option>
-                <option value="2">Pierre Last</option>
-                <option value="3">Ana Amop</option>
-                <option value="4">Cyril Vimard</option>
-                <option value="5">Jonathan Reza</option>
-                <option value="6">Pierre Feuille</option>
-                <option value="7">Octave Jean</option>
-                <option value="8">Cyril Second</option>
-              </Select>
-            </div>
-          </FormControl>
+          <div>
+            <InputLabel htmlFor="idSelectedUser">Sélectionner un utilisateur</InputLabel>
+            <Select
+              native
+              value={idSelectedUser}
+              onChange={this.handleChange}
+              inputProps={{
+                name: 'idSelectedUser',
+                id: 'idSelectedUser',
+              }}
+              style={{ marginBottom: '20px', width: '30%' }}
+            >
+              <option aria-label="None" value="" />
+              <option value="1">Jacques Last</option>
+              <option value="2">Pierre Last</option>
+              <option value="3">Ana Amop</option>
+              <option value="4">Cyril Vimard</option>
+              <option value="5">Jonathan Reza</option>
+              <option value="6">Pierre Feuille</option>
+              <option value="7">Octave Jean</option>
+              <option value="8">Cyril Second</option>
+            </Select>
+          </div>
           <TextField id="firstNameEdit" label="firstName" variant="outlined" />
           <TextField id="lastNameEdit" label="fastName" variant="outlined" />
           <TextField id="cityEdit" label="city" variant="outlined" />
           <TextField id="phoneEdit" label="phone" type="number" InputLabelProps={{ shrink: true }} variant="outlined" />
           <Tooltip title="Editer le contact">
             <IconButton type="submit" value="Enregistrer">
-              <SendIcon />
+              <Send />
             </IconButton>
           </Tooltip>
         </form>
-        <input onChange={this.search} className="search" placeholder="Rechercher parmis les contacts" />
+        <hr style={{ marginTop: '25px' }} />
+        <input style={{ height: '40px', marginTop: '30px', width: '30%' }} onChange={this.search} className="search" placeholder="Rechercher parmis les contacts" />
         <h4>{dataSearch}</h4>
         <ul>
           { dataSearch === '' ? items.map((user) => (<Contact key={user.id} user={user} />))
