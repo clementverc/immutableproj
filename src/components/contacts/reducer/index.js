@@ -1,10 +1,12 @@
-import { fromJS } from 'immutable';
+// import { fromJS } from 'immutable';
+import MyImmutable from '../../../MyImmutable';
 
 import actionsTypes from '../action/actions-types';
 import initialState from './initial-state';
 
 const actionContact = (state, action) => (
-  fromJS(state)
+  MyImmutable.fromJS(state)
+  // fromJS(state)
     .setIn(['items'], action.contacts)
     .toJS()
 );
